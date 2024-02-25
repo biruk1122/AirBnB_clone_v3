@@ -71,24 +71,30 @@ class FileStorage:
 
     def get(self, cls, id):
         """
-        gets specific object
-        :param cls: class
-        :param id: id of instance
-        :return: object or None
+        Returns the object based on the class name and its ID, or
+        None if not found
         """
-        all_class = self.all(cls)
+        if cls not in classes.values():
+            return None
 
-        for obj in all_class.values():
-            if id == str(obj.id):
-                return obj
+        all_cls = models.storage.all(cls)
+        for value in all_cls.values():
+            if (value.id == id):
+                return value
 
         return None
 
     def count(self, cls=None):
         """
-        count of instances
-        :param cls: class
-        :return: number of instances
+        count the number of objects in storage
         """
+        all_class = classes.values()
 
-        return len(self.all(cls))
+        if not cls:
+            count = 0
+            for clas in all_class:
+                count += len(models.storage.all(clas).values())
+        else:
+            count = len(models.storage.all(cls).values())
+
+        return count
