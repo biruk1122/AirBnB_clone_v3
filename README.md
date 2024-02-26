@@ -1,4 +1,4 @@
-AUTHOAUTHOR 
+AUTHOR 
 Name = Biruk Fikadu
 email = birukfikadu29@gmail.com
 ####Information about my new contribution
